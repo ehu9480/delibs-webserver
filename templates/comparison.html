@@ -1,0 +1,34 @@
+<!-- templates/comparison.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compare Candidates</title>
+</head>
+<body>
+    <h1>Compare Candidates</h1>
+
+    <!-- Candidate A videos -->
+    <div>
+        <h2>Candidate A (#{{ candidate_a.candidate_number }})</h2>
+        {% for vid in candA_videos %}
+          <video src="{{ url_for('serve_disk_video', filename=vid) }}" controls></video>
+        {% endfor %}
+    </div>
+
+    <!-- Candidate B videos -->
+    <div>
+        <h2>Candidate B (#{{ candidate_b.candidate_number }})</h2>
+        {% for vid in candB_videos %}
+          <video src="{{ url_for('serve_disk_video', filename=vid) }}" controls></video>
+        {% endfor %}
+    </div>
+
+    <form method="POST" action="{{ url_for('submit_comparison',
+                                           candidate_a_id=candidate_a.id,
+                                           candidate_b_id=candidate_b.id) }}">
+        <button name="result" value="A_better">Candidate A is better</button>
+        <button name="result" value="B_better">Candidate B is better</button>
+        <button name="result" value="not_sure">Not sure</button>
+    </form>
+</body>
+</html>

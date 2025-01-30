@@ -1,0 +1,120 @@
+<!-- templates/admin.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Admin Dashboard</title>
+  <!-- Socket.IO client -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <h1>Admin Control Panel</h1>
+
+  <!-- Show daily password -->
+  <h2>Daily Password</h2>
+  <p>Current Password: {{ daily_password or 'None set yet' }}</p>
+  <form method="POST" action="{{ url_for('update_daily_password') }}"
+        onsubmit="return confirm('Generate new daily password?')">
+    <button type="submit">Generate New Password</button>
+  </form>
+
+  <!-- Reset DB -->
+  <h2>Reset DB</h2>
+  <form method="POST" action="{{ url_for('admin_reset_db') }}"
+        onsubmit="return confirm('Remove all normal users, auditionees, etc.?')">
+    <button type="submit">Reset Database</button>
+  </form>
+
+  <h2>Auctionee Management</h2>
+  <p>Enter how many new auditionees you want to add. The system will auto-generate a new candidate_number for each.</p>
+  <form method="POST" action="{{ url_for('add_auditionees') }}">
+    <label for="candidate_count">Number of candidates to add:</label>
+    <input type="number" name="candidate_count" min="1" required>
+    <button type="submit">Add Auditionees</button>
+  </form>
+
+  <!-- The canvas for our chart -->
+  <canvas id="progressChart" width="400" height="200"></canvas>
+
+  <script>
+    // Initialize socket.io
+    const socket = io();
+    let progressChart;  // We'll store the Chart.js instance here.
+
+    // 1) Function to update or create the Chart.js bar chart
+    function updateProgressChart(dataArray) {
+      // dataArray is something like:
+      // [ { user_id: 2, username: 'john', comparisons_done: 3, total_comparisons: 10 }, ... ]
+
+      // Build arrays for Chart.js
+      const usernames = dataArray.map(d => d.username);
+      const progress = dataArray.map(d => {
+        if (d.total_comparisons === 0) return 0;
+        return (d.comparisons_done / d.total_comparisons) * 100;
+      });
+
+      // If chart doesn't exist yet, create it
+      if (!progressChart) {
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        progressChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: usernames,
+            datasets: [{
+              label: 'Progress (%)',
+              data: progress,
+              backgroundColor: 'rgba(54, 162, 235, 0.5)'
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100
+              }
+            }
+          }
+        });
+      } else {
+        // Update existing chart data
+        progressChart.data.labels = usernames;
+        progressChart.data.datasets[0].data = progress;
+        progressChart.update();
+      }
+    }
+
+    // 2) On page load, fetch initial progress data from /api/progress
+    fetch('/api/progress')
+      .then(response => response.json())
+      .then(jsonData => {
+        // jsonData => { data: [ {user_id, username, comparisons_done, total_comparisons}, ... ] }
+        updateProgressChart(jsonData.data);
+      })
+      .catch(err => console.error("Error fetching initial progress:", err));
+
+    // 3) Listen for socket.io events
+    socket.on('connect', () => {
+      console.log('Connected to WebSocket');
+
+      // Periodically request updated progress
+      setInterval(() => {
+        console.log("Emitting request_progress_update");
+        socket.emit('request_progress_update');
+      }, 5000);
+    });
+
+    socket.on('progress_update', (payload) => {
+      // payload => { data: [ {user_id, username, comparisons_done, total_comparisons}, ... ] }
+      console.log("Received progress_update:", payload);
+      updateProgressChart(payload.data);
+    });
+  </script>
+
+  <h2>See Final Results</h2>
+  <p><a href="{{ url_for('view_results') }}">View Aggregated Rankings</a></p>
+</body>
+</html>

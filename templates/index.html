@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}!</h1>
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+
+    <h2>Audition Videos</h2>
+    <ul>
+        <li><a href="{{ url_for('video', video_id=1) }}">Audition 1 (1 hour)</a></li>
+        <li><a href="{{ url_for('video', video_id=2) }}">Audition 2 (1 hour)</a></li>
+        <li><a href="{{ url_for('video', video_id=3) }}">Audition 3 (1 hour)</a></li>
+    </ul>
+
+    <p>
+        Click any link to watch. You can fast-forward/rewind to the relevant timestamps 
+        for each candidate's performance.
+    </p>
+</body>
+</html>

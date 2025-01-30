@@ -1,0 +1,37 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Committee Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome {{ username }}</h1>
+        <nav>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <section>
+            <h2>Comparison</h2>
+            <p>
+              You will compare two auditionees by watching their videos and select which candidate you prefer more, or 
+              click "Not sure" if you cant decide.
+            </p>
+
+            {% if tree_data %}
+              <p>Your list is already initialized.</p>
+              <p>
+                <a href="{{ url_for('next_comparison') }}">Continue Comparing</a>
+              </p>
+            {% else %}
+              <form method="POST" action="{{ url_for('init_user_tree') }}">
+                  <button type="submit">Initialize BST & Start Pairwise Comparisons</button>
+              </form>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>

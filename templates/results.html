@@ -1,0 +1,31 @@
+<!-- templates/results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voting Results</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Voting Results</h1>
+    <p><a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a></p>
+
+    {% if rankings %}
+        <table border="1" cellpadding="8">
+            <tr>
+                <th>Candidate</th>
+                <th>Score</th>
+            </tr>
+            {% for r in rankings %}
+            <tr>
+                <td>{{ r.candidate }}</td>
+                <td>{{ r.score }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No ranking data yet.</p>
+    {% endif %}
+
+    <!-- You could add Plotly or other JS-based charts here -->
+</body>
+</html>

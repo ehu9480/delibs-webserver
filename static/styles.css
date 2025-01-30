@@ -1,0 +1,25 @@
+.login-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.control-card {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.voting-form {
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.criteria {
+  display: grid;
+  gap: 1rem;
+}
