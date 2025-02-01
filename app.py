@@ -648,23 +648,23 @@ def submit_step():
 ###############################################################################
 def find_videos_for_candidate(candidate_id, directory=VIDEO_DIRECTORY):
     """
-    Return a list of .MOV filenames in 'directory' that mention candidate_id 
+    Return a list of .mp4 filenames in 'directory' that mention candidate_id 
     in the underscore portion (excluding any parentheses).
-    Example: If candidate_id=2, we include '1_2_3.MOV' but exclude '3_4_5 (2).MOV'.
+    Example: If candidate_id=2, we include '1_2_3.mp4' but exclude '3_4_5 (2).mp4'.
     """
     results = []
     candidate_str = str(candidate_id)
 
     for filename in os.listdir(directory):
-        # Only consider .MOV (case-insensitive)
+        # Only consider .mp4 (case-insensitive)
         if not filename.lower().endswith(".mp4"):
             continue
 
         # Split at '(' => only consider the part before parentheses
         parts = filename.split('(', 1)
-        underscore_part = parts[0].rstrip()  # e.g. "3_4_5 " or "1_2_3.MOV"
+        underscore_part = parts[0].rstrip()  # e.g. "3_4_5 " or "1_2_3.mp4"
 
-        # Remove trailing .MOV or .mov
+        # Remove trailing .mp4 or .mp4
         underscore_part = underscore_part.replace(".MP4", "").replace(".mp4", "").strip()
 
         # Extract digits from that underscore portion
