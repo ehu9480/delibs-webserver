@@ -122,9 +122,16 @@ def login():
         with get_db_connection() as conn:
             user = conn.execute("SELECT * FROM users WHERE username=?", (username,)).fetchone()
 
+            # Admin login
             if login_type == 'admin':
-                # ... unchanged admin logic ...
-                pass
+                if user and user['role'] == 'admin' and check_password_hash(user['password'], password):
+                    session['user_id'] = user['id']
+                    session['is_admin'] = True
+                    flash("Admin login successful.")
+                    return redirect(url_for('admin_dashboard'))
+                else:
+                    flash("Invalid admin credentials.")
+                    return redirect(url_for('login'))
             else:
                 # 1) Check daily password
                 row = conn.execute("SELECT password FROM daily_passwords ORDER BY created_at DESC LIMIT 1").fetchone()
@@ -650,7 +657,7 @@ def find_videos_for_candidate(candidate_id, directory=VIDEO_DIRECTORY):
 
     for filename in os.listdir(directory):
         # Only consider .MOV (case-insensitive)
-        if not filename.lower().endswith(".mov"):
+        if not filename.lower().endswith(".mp4"):
             continue
 
         # Split at '(' => only consider the part before parentheses
@@ -658,7 +665,7 @@ def find_videos_for_candidate(candidate_id, directory=VIDEO_DIRECTORY):
         underscore_part = parts[0].rstrip()  # e.g. "3_4_5 " or "1_2_3.MOV"
 
         # Remove trailing .MOV or .mov
-        underscore_part = underscore_part.replace(".MOV", "").replace(".mov", "").strip()
+        underscore_part = underscore_part.replace(".MP4", "").replace(".mp4", "").strip()
 
         # Extract digits from that underscore portion
         digit_list = re.findall(r'\d+', underscore_part)
