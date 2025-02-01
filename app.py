@@ -685,7 +685,7 @@ def serve_disk_video(filename):
     if '..' in filename or filename.startswith('/'):
         return "Invalid filename", 400
     
-    full_path = os.path.join("D:/videos", filename)
+    full_path = os.path.join("D:\PRIVATE\M4ROOT\CLIP", filename)
     if not os.path.exists(full_path):
         return "File not found", 404
     
