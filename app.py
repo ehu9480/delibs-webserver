@@ -23,7 +23,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 DATABASE = 'database.db'
 
 # Where the videos are stored (if you're serving them from disk)
-VIDEO_DIRECTORY = r"D:/videos"
+VIDEO_DIRECTORY = r"D:\PRIVATE\M4ROOT\CLIP"
 
 def get_db_connection():
     conn = sqlite3.connect(DATABASE)
@@ -689,7 +689,7 @@ def serve_disk_video(filename):
     if not os.path.exists(full_path):
         return "File not found", 404
     
-    return send_from_directory("D:/videos", filename)
+    return send_from_directory("D:\PRIVATE\M4ROOT\CLIP", filename)
 
 @socketio.on('request_progress_update')
 def handle_progress_request_socket():
