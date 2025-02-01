@@ -23,7 +23,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 DATABASE = 'database.db'
 
 # Where the videos are stored (if you're serving them from disk)
-VIDEO_DIRECTORY = r"C:\Users\ataki\OneDrive\Documents"
+VIDEO_DIRECTORY = r"C:\sp25 auditions"
 
 def get_db_connection():
     conn = sqlite3.connect(DATABASE)
@@ -685,11 +685,11 @@ def serve_disk_video(filename):
     if '..' in filename or filename.startswith('/'):
         return "Invalid filename", 400
     
-    full_path = os.path.join(r"C:\Users\ataki\OneDrive\Documents", filename)
+    full_path = os.path.join("C:\\users\ataki\OneDrive\Documents", filename)
     if not os.path.exists(full_path):
         return "File not found", 404
     
-    return send_from_directory("C:\Users\ataki\OneDrive\Documents", filename)
+    return send_from_directory("C:\sp25 auditions", filename)
 
 @socketio.on('request_progress_update')
 def handle_progress_request_socket():
