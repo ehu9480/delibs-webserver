@@ -23,3 +23,24 @@
   display: grid;
   gap: 1rem;
 }
+
+.comparison-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem; /* space between columns */
+}
+
+.candidate-column {
+  width: 48%; /* about half the page */
+}
+
+.candidate-column video {
+  display: block;
+  width: 100%; /* video fills the column width */
+  margin-bottom: 1rem;
+}
+
+.candidate-column form button {
+  display: block;
+  margin: 0.5rem 0;
+}

@@ -1,37 +1,54 @@
-<!-- templates/dashboard.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Committee Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>Member Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Welcome {{ username }}</h1>
-        <nav>
-            <a href="{{ url_for('logout') }}">Logout</a>
-        </nav>
-    </header>
+  <h1>Welcome {{ username }}</h1>
+  
+  {% if show_comparison %}
+    <h2>Compare Candidates</h2>
+    <p>Which auditionee performed better based on the 4 categories: choreo retention, execution, performance quality, and growth?</p>
+    <div class="comparison-container">
+      <div class="candidate-column">
+        <h3>Candidate #{{ candidate_b.candidate_number }}</h3>
+        {% for vid in candB_videos %}
+          <video src="{{ url_for('serve_disk_video', filename=vid) }}" controls></video>
+        {% endfor %}
+        <form method="POST" action="{{ url_for('submit_step') }}">
+          <button name="result" value="b_better">
+            Candidate #{{ candidate_b.candidate_number }} performed better based on the critera
+          </button>
+          <button name="result" value="tie_b">
+            Can't decide
+          </button>
+        </form>
+      </div>
 
-    <div class="dashboard-container">
-        <section>
-            <h2>Comparison</h2>
-            <p>
-              You will compare two auditionees by watching their videos and select which candidate you prefer more, or 
-              click "Not sure" if you cant decide.
-            </p>
-
-            {% if tree_data %}
-              <p>Your list is already initialized.</p>
-              <p>
-                <a href="{{ url_for('next_comparison') }}">Continue Comparing</a>
-              </p>
-            {% else %}
-              <form method="POST" action="{{ url_for('init_user_tree') }}">
-                  <button type="submit">Initialize BST & Start Pairwise Comparisons</button>
-              </form>
-            {% endif %}
-        </section>
+      <div class="candidate-column">
+        <h3>Candidate #{{ candidate_a.candidate_number }}</h3>
+        {% for vid in candA_videos %}
+          <video src="{{ url_for('serve_disk_video', filename=vid) }}" controls></video>
+        {% endfor %}
+        <form method="POST" action="{{ url_for('submit_step') }}">
+          <button name="result" value="a_better">
+            Candidate #{{ candidate_a.candidate_number }} performed better based on the critera
+          </button>
+        </form>
+      </div>
     </div>
+  {% else %}
+  <!-- If no comparison is happening, show normal stuff -->
+  {% if processed_count < assigned_count %} <p>We are either inserting a candidate.
+    Refresh or check if there's an unprocessed candidate to compare.
+    </p>
+    {% else %}
+    <p>All assigned candidates processed!</p>
+    {% endif %}
+    {% endif %}
+
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
 </body>
+
 </html>

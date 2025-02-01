@@ -4,37 +4,39 @@
 
 <head>
   <title>Admin Dashboard</title>
-  <!-- Socket.IO client -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
   <h1>Admin Control Panel</h1>
-
-  <!-- Show daily password -->
+  <p>
+    Reset daily password and database once before starting the deliberation process.
+  </p>
   <h2>Daily Password</h2>
-  <p>Current Password: {{ daily_password or 'None set yet' }}</p>
+  <p>Current Password: {{ daily_password or 'None' }}</p>
   <form method="POST" action="{{ url_for('update_daily_password') }}"
-        onsubmit="return confirm('Generate new daily password?')">
+    onsubmit="return confirm('Generate new daily password?')">
     <button type="submit">Generate New Password</button>
   </form>
 
-  <!-- Reset DB -->
-  <h2>Reset DB</h2>
+  <h2>Reset Database</h2>
   <form method="POST" action="{{ url_for('admin_reset_db') }}"
-        onsubmit="return confirm('Remove all normal users, auditionees, etc.?')">
+    onsubmit="return confirm('Remove all normal users, auditionees, etc.?')">
     <button type="submit">Reset Database</button>
   </form>
 
-  <h2>Auctionee Management</h2>
-  <p>Enter how many new auditionees you want to add. The system will auto-generate a new candidate_number for each.</p>
-  <form method="POST" action="{{ url_for('add_auditionees') }}">
-    <label for="candidate_count">Number of candidates to add:</label>
+  <h2>Set Total Auditionees</h2>
+  <p>
+    Enter how many candidates there are.
+  </p>
+
+  <form method="POST" action="{{ url_for('set_auditionees') }}">
+    <label for="candidate_count">Number of Auditionees:</label>
     <input type="number" name="candidate_count" min="1" required>
-    <button type="submit">Add Auditionees</button>
+    <button type="submit">Confirm</button>
   </form>
+  <p>The system currently has {{ total_auditionees }} candidates.</p>
 
   <!-- The canvas for our chart -->
   <canvas id="progressChart" width="400" height="200"></canvas>
@@ -114,7 +116,13 @@
     });
   </script>
 
-  <h2>See Final Results</h2>
-  <p><a href="{{ url_for('view_results') }}">View Aggregated Rankings</a></p>
+
+
+  <h2>Results</h2>
+  <!-- Make it a POST form button calling view_results -->
+  <form method="POST" action="{{ url_for('view_results') }}">
+    <button type="submit">View Aggregated Rankings</button>
+  </form>
 </body>
+
 </html>
