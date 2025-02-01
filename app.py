@@ -677,7 +677,7 @@ def find_videos_for_candidate(candidate_id, directory=VIDEO_DIRECTORY):
 ###############################################################################
 # UTILS
 ###############################################################################
-@app.route('/videos/<path:filename>')
+@app.route('/<path:filename>')
 def serve_disk_video(filename):
     from flask import send_from_directory
     import os
@@ -685,7 +685,7 @@ def serve_disk_video(filename):
     if '..' in filename or filename.startswith('/'):
         return "Invalid filename", 400
     
-    full_path = os.path.join("C:\sp25 auditions", filename)
+    full_path = os.path.join("C:\\sp25 auditions", filename)
     if not os.path.exists(full_path):
         return "File not found", 404
     
