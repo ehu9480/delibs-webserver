@@ -11,7 +11,6 @@
 ## Network Setup
 There will be two links, one will look like http://120.0.0.1:5000
 that is the one that will run locally, provide the second one (which contains your IP address) to the team
-```
 
 **Note:** They have to be connected to the same WiFi
 
