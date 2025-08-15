@@ -2,7 +2,6 @@ import os
 import re
 import random
 import json
-import math
 import sqlite3
 from functools import wraps
 
@@ -23,7 +22,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 DATABASE = 'database.db'
 
 # Where the videos are stored (if you're serving them from disk)
-VIDEO_DIRECTORY = r"C:\sp25_auditions"
+VIDEO_DIRECTORY = r"C:\Users\vidFolder"
 
 def get_db_connection():
     conn = sqlite3.connect(DATABASE)
@@ -685,11 +684,11 @@ def serve_disk_video(filename):
     if '..' in filename or filename.startswith('/'):
         return "Invalid filename", 400
     
-    full_path = os.path.join("C:\sp25_auditions", filename)
+    full_path = os.path.join(VIDEO_DIRECTORY, filename)
     if not os.path.exists(full_path):
         return "File not found", 404
     
-    return send_from_directory("C:\sp25_auditions", filename)
+    return send_from_directory(VIDEO_DIRECTORY, filename)
 
 @socketio.on('request_progress_update')
 def handle_progress_request_socket():
