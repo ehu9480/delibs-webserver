@@ -8,70 +8,58 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
-<<<<<<< HEAD <body>
-    =======
+<body class="login-page">
+    <img src="{{ url_for('static', filename='images/loko+logo+black+transparent.webp') }}" alt="LOKO" class="loko-logo">
+    <div class="login-container">
+        <h1>Welcome Back to Delibs Season!</h1>
 
-    <body class="login-page">
-        =======
+        <h5>Welcome back! Please select your role to get started.</h5>
 
-        <body>
-            >>>>>>> master
-            <img src="{{ url_for('static', filename='images/loko+logo+black+transparent.webp') }}" alt="LOKO"
-                class="loko-logo">
-            <div class="login-container">
-                <h1>Welcome Back to Delibs Season!</h1>
+        <div class="login-choice">
+            <button onclick="showAdminLogin()">Admin Login</button>
+            <button onclick="showMemberLogin()">Committee Member Login</button>
+        </div>
 
-                <h5>Welcome back! Please select your role to get started.</h5>
+        <!-- Admin Login Form -->
+        <div id="adminLogin" style="display:none;">
+            <h4>Admin Login</h4>
+            <form method="POST" action="{{ url_for('login') }}">
+                <input type="hidden" name="type" value="admin">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter Your Username" required>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter the Admin Password" required>
+                <label></label>
+                <button type="submit">Login</button>
+            </form>
+        </div>
 
-                <div class="login-choice">
-                    <button onclick="showAdminLogin()">Admin Login</button>
-                    <button onclick="showMemberLogin()">Committee Member Login</button>
-                </div>
+        <!-- Committee Member Login Form -->
+        <div id="memberLogin" style="display:none;">
+            <h4>Committee Member Login</h4>
+            <form method="POST" action="{{ url_for('login') }}">
+                <input type="hidden" name="type" value="member">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter Your Username (don't forget!)" required>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter the Daily Password" required>
+                <label></label>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    <footer>&copy; 2025 LOKO Cornell</footer>
 
-                <!-- Admin Login Form -->
-                <div id="adminLogin" style="display:none;">
-                    <h4>Admin Login</h4>
-                    <form method="POST" action="{{ url_for('login') }}">
-                        <input type="hidden" name="type" value="admin">
-                        <label>Username</label>
-                        <input type="text" name="username" placeholder="Enter Your Username" required>
-                        <label>Password</label>
-                        <input type="password" name="password" placeholder="Enter the Admin Password" required>
-                        <label></label>
-                        <button type="submit">Login</button>
-                    </form>
-                </div>
-
-                <!-- Committee Member Login Form -->
-                <div id="memberLogin" style="display:none;">
-                    <h4>Committee Member Login</h4>
-                    <form method="POST" action="{{ url_for('login') }}">
-                        <input type="hidden" name="type" value="member">
-                        <label>Username</label>
-                        <<<<<<< HEAD <input type="text" name="username"
-                            placeholder="Enter Your Username (don't forget!)" required>
-                            >>>>>>> f32a26b (first changes to admin dashboard ui)
-                            <label>Password</label>
-                            <input type="password" name="password" placeholder="Enter the Daily Password" required>
-                            <label></label>
-                            <button type="submit">Login</button>
-                    </form>
-                </div>
-            </div>
-
-            <<<<<<< HEAD <footer>&copy; 2025 LOKO Cornell</footer>
-                >>>>>>> f32a26b (first changes to admin dashboard ui)
-
-                <script>
-                    function showAdminLogin() {
-                        document.getElementById('adminLogin').style.display = 'block';
-                        document.getElementById('memberLogin').style.display = 'none';
-                    }
-                    function showMemberLogin() {
-                        document.getElementById('memberLogin').style.display = 'block';
-                        document.getElementById('adminLogin').style.display = 'none';
-                    }
-                </script>
-        </body>
+    <script>
+        function showAdminLogin() {
+            document.getElementById('adminLogin').style.display = 'block';
+            document.getElementById('memberLogin').style.display = 'none';
+        }
+        function showMemberLogin() {
+            document.getElementById('memberLogin').style.display = 'block';
+            document.getElementById('adminLogin').style.display = 'none';
+        }
+    </script>
+</body>
 
 </html>
