@@ -361,13 +361,25 @@ def set_auditionees():
             conn.commit()
             return redirect(url_for('admin_dashboard'))
 
-        for uid in user_ids:
-            # pick 30%
-            subset_size = max(1, int(0.3 * total_cands))
-            chosen_candidates = random.sample(cand_ids, subset_size)
-            for cid in chosen_candidates:
+        # OLD APPROACH: each user/member reviews 30% of candidates (PROBLEM: some candidates potentially get fewer/greater reviews)
+        # for uid in user_ids:
+        #     # pick 30%
+        #     subset_size = max(1, int(0.3 * total_cands))
+        #     chosen_candidates = random.sample(cand_ids, subset_size)
+        #     for cid in chosen_candidates:
+        #         conn.execute("INSERT INTO assignments (user_id, candidate_id) VALUES (?,?)",
+        #                      (uid, cid))
+        # Each candidate is reviewed by 50% of users
+
+        # NEW APPROACH: each candidate is reviewed by 50% of users/members (NOTE: members may review different # of candidates)
+        reviews_per_candidate = max(1, len(user_ids) // 2)
+
+        for cid in cand_ids:
+            # Randomly pick members (50% of the total party) for this candidate
+            chosen_members = random.sample(user_ids, reviews_per_candidate)
+            for uid in chosen_members:
                 conn.execute("INSERT INTO assignments (user_id, candidate_id) VALUES (?,?)",
-                             (uid, cid))
+                            (uid, cid))
 
         # 5) Reset or init user_rankings
         for uid in user_ids:
