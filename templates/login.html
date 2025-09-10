@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
+<<<<<<< HEAD
 <body>
+=======
+<body class="login-page">
+>>>>>>> f32a26b (first changes to admin dashboard ui)
     <img src="{{ url_for('static', filename='images/loko+logo+black+transparent.webp') }}" alt="LOKO" class="loko-logo">
     <div class="login-container">
         <h1>Welcome Back to Delibs Season!</h1>
@@ -40,7 +44,11 @@
             <form method="POST" action="{{ url_for('login') }}">
                 <input type="hidden" name="type" value="member">
                 <label>Username</label>
+<<<<<<< HEAD
                 <input type="text" name="username" placeholder="Enter Your Username" required>
+=======
+                <input type="text" name="username" placeholder="Enter Your Username (don't forget!)" required>
+>>>>>>> f32a26b (first changes to admin dashboard ui)
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Enter the Daily Password" required>
                 <label></label>
@@ -49,7 +57,11 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <footer>&copy; 2025</footer>
+=======
+    <footer>&copy; 2025 LOKO Cornell</footer>
+>>>>>>> f32a26b (first changes to admin dashboard ui)
 
     <script>
         function showAdminLogin() {

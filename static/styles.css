@@ -1,4 +1,4 @@
-body {
+body.login-page {
   font-family: 'Mulish', sans-serif;
   color: black;
   min-height: 100vh;
@@ -29,6 +29,7 @@ footer {
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
+  border: none;
   border: none;
   border-radius: 4px;
   align-items: center;
@@ -142,6 +143,21 @@ footer {
 #memberLogin form button[type="submit"]:hover {
   background-color: rgb(255, 209, 0);
   cursor: pointer;
+}
+
+body.admin-dashboard {
+  font-family: 'Mulish', sans-serif;
+  color: black;
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+#adminDashboard admin-control-panel-header {
+  color: #7E7E7E;
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .control-card {

@@ -6,13 +6,12 @@
   <title>Admin Dashboard</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
-<body>
-  <h1>Admin Control Panel</h1>
-  <p>
-    Reset daily password and database once before starting the deliberation process.
-  </p>
+<body class="admin-dashboard">
+  <header class="admin-control-panel-header">Admin Control Panel · Reset daily password and database once before
+    starting the deliberation process.</header>
   <h2>Daily Password</h2>
   <p>Current Password: {{ daily_password or 'None' }}</p>
   <form method="POST" action="{{ url_for('update_daily_password') }}"
