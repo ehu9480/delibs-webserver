@@ -1,14 +1,20 @@
 <!-- templates/login.html -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Login Portal</title>
+    <link href="https://fonts.googleapis.com/css?family=Mulish:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
+    <img src="{{ url_for('static', filename='images/loko+logo+black+transparent.webp') }}" alt="LOKO" class="loko-logo">
     <div class="login-container">
-        <h1>Audition Committee Login</h1>
-        
+        <h1>Welcome Back to Delibs Season!</h1>
+
+        <h5>Welcome back! Please select your role to get started.</h5>
+
         <div class="login-choice">
             <button onclick="showAdminLogin()">Admin Login</button>
             <button onclick="showMemberLogin()">Committee Member Login</button>
@@ -16,36 +22,45 @@
 
         <!-- Admin Login Form -->
         <div id="adminLogin" style="display:none;">
-            <h2>Admin Login</h2>
+            <h4>Admin Login</h4>
             <form method="POST" action="{{ url_for('login') }}">
                 <input type="hidden" name="type" value="admin">
-                <input type="text" name="username" placeholder="Admin Username" required>
-                <input type="password" name="password" placeholder="Admin Password" required>
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter Your Username" required>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter the Admin Password" required>
+                <label></label>
                 <button type="submit">Login</button>
             </form>
         </div>
 
         <!-- Committee Member Login Form -->
         <div id="memberLogin" style="display:none;">
-            <h2>Committee Member Login</h2>
+            <h4>Committee Member Login</h4>
             <form method="POST" action="{{ url_for('login') }}">
                 <input type="hidden" name="type" value="member">
-                <input type="text" name="username" placeholder="Your Username" required>
-                <input type="password" name="password" placeholder="Daily Password" required>
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter Your Username" required>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter the Daily Password" required>
+                <label></label>
                 <button type="submit">Login</button>
             </form>
         </div>
     </div>
 
+    <footer>&copy; 2025</footer>
+
     <script>
-    function showAdminLogin() {
-        document.getElementById('adminLogin').style.display = 'block';
-        document.getElementById('memberLogin').style.display = 'none';
-    }
-    function showMemberLogin() {
-        document.getElementById('memberLogin').style.display = 'block';
-        document.getElementById('adminLogin').style.display = 'none';
-    }
+        function showAdminLogin() {
+            document.getElementById('adminLogin').style.display = 'block';
+            document.getElementById('memberLogin').style.display = 'none';
+        }
+        function showMemberLogin() {
+            document.getElementById('memberLogin').style.display = 'block';
+            document.getElementById('adminLogin').style.display = 'none';
+        }
     </script>
 </body>
+
 </html>

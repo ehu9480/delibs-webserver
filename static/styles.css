@@ -1,9 +1,147 @@
+body {
+  font-family: 'Mulish', sans-serif;
+  color: black;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loko-logo {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  width: 40px;
+  height: auto;
+  z-index: 1000;
+}
+
+footer {
+  position: fixed;
+  font-size: 12px;
+  color: #7E7E7E;
+  bottom: 24px;
+  left: 24px;
+}
+
 .login-container {
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.login-container>h2 {
+  color: white;
+  text-align: center;
+  font-weight: normal;
+}
+
+.login-container>h5 {
+  color: #7E7E7E;
+  text-align: center;
+  font-weight: normal;
+  margin-top: 0;
+}
+
+.login-choice {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.login-choice>button {
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  width: 270px;
+  height: 50px;
+  border: none;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+  font-size: 13px;
+}
+
+.login-choice>button:hover {
+  background-color: rgb(255, 209, 0);
+  cursor: pointer;
+}
+
+#memberLogin h4,
+#adminLogin h4 {
+  margin-top: 60px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#memberLogin form,
+#adminLogin form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+}
+
+#adminLogin form label,
+#memberLogin form label {
+  align-self: flex-start;
+  font-weight: 500;
+  color: black;
+  font-size: 13px;
+}
+
+#adminLogin form input[type="text"],
+#adminLogin form input[type="password"],
+#adminLogin form button[type="submit"],
+#memberLogin form input[type="text"],
+#memberLogin form input[type="password"],
+#memberLogin form button[type="submit"] {
+  width: 320px;
+  height: 40px;
+  border-radius: 30px;
+  border: 1px solid #c1c1c1;
+  font-family: inherit;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+#adminLogin form input[type="text"]::placeholder,
+#adminLogin form input[type="password"]::placeholder,
+#memberLogin form input[type="text"]::placeholder,
+#memberLogin form input[type="password"]::placeholder {
+  color: #c1c1c1;
+  opacity: 1;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+#adminLogin form button[type="submit"],
+#memberLogin form button[type="submit"] {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+#adminLogin form button[type="submit"]:hover,
+#memberLogin form button[type="submit"]:hover {
+  background-color: rgb(255, 209, 0);
+  cursor: pointer;
 }
 
 .control-card {
@@ -27,16 +165,19 @@
 .comparison-container {
   display: flex;
   justify-content: space-between;
-  gap: 1rem; /* space between columns */
+  gap: 1rem;
+  /* space between columns */
 }
 
 .candidate-column {
-  width: 48%; /* about half the page */
+  width: 48%;
+  /* about half the page */
 }
 
 .candidate-column video {
   display: block;
-  width: 100%; /* video fills the column width */
+  width: 100%;
+  /* video fills the column width */
   margin-bottom: 1rem;
 }
 
