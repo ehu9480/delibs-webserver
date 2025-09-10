@@ -154,7 +154,14 @@ body.admin-dashboard {
   background-color: #f9f9f9;
 }
 
-#adminDashboard admin-control-panel-header {
+.admin-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-control-panel-header {
   color: #7E7E7E;
   font-size: 14px;
   font-weight: normal;
