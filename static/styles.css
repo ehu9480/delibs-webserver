@@ -17,7 +17,7 @@ body.login-page .loko-logo {
   z-index: 1000;
 }
 
-body.admin-dashboard .loko-logo {
+body.dashboard .loko-logo {
   position: static;
   width: 40px;
   height: auto;
@@ -151,7 +151,7 @@ footer {
   cursor: pointer;
 }
 
-body.admin-dashboard {
+body.dashboard {
   font-family: 'Mulish', sans-serif;
   color: black;
   min-height: 100vh;
@@ -160,26 +160,26 @@ body.admin-dashboard {
   background-color: white;
 }
 
-.admin-header {
+.dashboard-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 3rem;
 }
 
-.admin-header-left {
+.dashboard-header-left {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-.admin-control-panel-header {
+.dashboard-control-panel-header {
   color: #7E7E7E;
   font-size: 14px;
   font-weight: normal;
 }
 
-.admin-hello-badge {
+.hello-badge {
   background-color: #EFEFEF;
   color: black;
   border-radius: 30px;

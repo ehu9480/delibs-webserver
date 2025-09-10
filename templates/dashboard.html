@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Member Dashboard</title>
+  <link href="https://fonts.googleapis.com/css?family=Mulish:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
-  <h1>Welcome {{ username }}</h1>
-  
-  {% if show_comparison %}
-    <h2>Compare Candidates</h2>
-    <p>Which auditionee performed better based on the 4 categories: choreo retention, execution, performance quality, and growth?</p>
-    <div class="comparison-container">
-      <div class="candidate-column">
-        <h3>Candidate #{{ candidate_b.candidate_number }}</h3>
-        {% for vid in candB_videos %}
-          <video src="{{ url_for('serve_disk_video', filename=vid) }}" controls></video>
-        {% endfor %}
-        <form method="POST" action="{{ url_for('submit_step') }}">
-          <button name="result" value="b_better">
-            Candidate #{{ candidate_b.candidate_number }} performed better based on the critera
-          </button>
-          <button name="result" value="tie_b">
-            Can't decide
-          </button>
-        </form>
-      </div>
 
-      <div class="candidate-column">
-        <h3>Candidate #{{ candidate_a.candidate_number }}</h3>
-        {% for vid in candA_videos %}
-          <video src="{{ url_for('serve_disk_video', filename=vid) }}" controls></video>
-        {% endfor %}
-        <form method="POST" action="{{ url_for('submit_step') }}">
-          <button name="result" value="a_better">
-            Candidate #{{ candidate_a.candidate_number }} performed better based on the critera
-          </button>
-        </form>
-      </div>
+<body class="dashboard">
+  <header class="dashboard-header">
+    <div class="dashboard-header-left">
+      <img src="{{ url_for('static', filename='images/loko+logo+black+transparent.webp') }}" alt="LOKO"
+        class="loko-logo">
+      <div class="dashboard-control-panel-header">Committee Member Panel · Compare candidates until completion.</div>
     </div>
+    <div class="hello-badge">
+      Welcome, {{ username }}
+    </div>
+  </header>
+
+  {% if show_comparison %}
+  <h2>Compare Candidates</h2>
+  <p>Which auditionee performed better based on the 4 categories: choreo retention, execution, performance quality, and
+    growth?</p>
+  <div class="comparison-container">
+    <div class="candidate-column">
+      <h3>Candidate #{{ candidate_b.candidate_number }}</h3>
+      {% for vid in candB_videos %}
+      <video src="{{ url_for('serve_disk_video', filename=vid) }}" controls></video>
+      {% endfor %}
+      <form method="POST" action="{{ url_for('submit_step') }}">
+        <button name="result" value="b_better">
+          Candidate #{{ candidate_b.candidate_number }} performed better based on the critera
+        </button>
+        <button name="result" value="tie_b">
+          Can't decide
+        </button>
+      </form>
+    </div>
+
+    <div class="candidate-column">
+      <h3>Candidate #{{ candidate_a.candidate_number }}</h3>
+      {% for vid in candA_videos %}
+      <video src="{{ url_for('serve_disk_video', filename=vid) }}" controls></video>
+      {% endfor %}
+      <form method="POST" action="{{ url_for('submit_step') }}">
+        <button name="result" value="a_better">
+          Candidate #{{ candidate_a.candidate_number }} performed better based on the critera
+        </button>
+      </form>
+    </div>
+  </div>
   {% else %}
   <!-- If no comparison is happening, show normal stuff -->
   {% if processed_count < assigned_count %} <p>We are either inserting a candidate.
