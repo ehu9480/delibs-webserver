@@ -167,7 +167,7 @@ body.dashboard {
   margin-bottom: 3rem;
 }
 
-.dashboard-header-left {
+.dashboard-header-group {
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -177,6 +177,30 @@ body.dashboard {
   color: #7E7E7E;
   font-size: 14px;
   font-weight: normal;
+}
+
+.logout {
+  background-color: none;
+  color: black;
+  border-radius: 30px;
+  border: 1px solid #EFEFEF;
+  padding: 0.5rem 1.5rem;
+  font-size: 14px;
+  font-family: inherit;
+  margin-left: 1rem;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
+.logout a {
+  text-decoration: none;
+  color: black;
+}
+
+.logout:hover {
+  background-color: #EFEFEF;
 }
 
 .hello-badge {

@@ -9,13 +9,16 @@
 
 <body class="dashboard">
   <header class="dashboard-header">
-    <div class="dashboard-header-left">
+    <div class="dashboard-header-group">
       <img src="{{ url_for('static', filename='images/loko+logo+black+transparent.webp') }}" alt="LOKO"
         class="loko-logo">
       <div class="dashboard-control-panel-header">Committee Member Panel · Compare candidates until completion.</div>
     </div>
-    <div class="hello-badge">
-      Welcome, {{ username }}
+    <div class="dashboard-header-group" style="gap: 0.5rem;">
+      <div class="logout"><a href="{{ url_for('logout') }}">Logout</a></div>
+      <div class="hello-badge">
+        Welcome, {{ username }}
+      </div>
     </div>
   </header>
 
@@ -58,10 +61,9 @@
     </p>
     {% else %}
     <p>All assigned candidates processed!</p>
+    <p>You can now logout.</p>
     {% endif %}
     {% endif %}
-
-    <p><a href="{{ url_for('logout') }}">Logout</a></p>
 
     <footer>&copy; 2025 LOKO Cornell</footer>
 </body>

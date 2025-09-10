@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Welcome</title>
 </head>
-<body>
-    <h1>Welcome, {{ username }}!</h1>
-    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+
+<body class="dashboard">
+    <header class="dashboard-header">
+        <div class="dashboard-header-group">
+            <img src="{{ url_for('static', filename='images/loko+logo+black+transparent.webp') }}" alt="LOKO"
+                class="loko-logo">
+            <div class="dashboard-control-panel-header">Committee Member Panel · Compare candidates until completion.
+            </div>
+        </div>
+        <div class="dashboard-header-group">
+            <div class="lougout"><a href="{{ url_for('logout') }}">Logout</a></div>
+            <div class="hello-badge">
+                Welcome, {{ username }}
+            </div>
+        </div>
+    </header>
 
     <h2>Audition Videos</h2>
     <ul>
@@ -15,8 +29,9 @@
     </ul>
 
     <p>
-        Click any link to watch. You can fast-forward/rewind to the relevant timestamps 
+        Click any link to watch. You can fast-forward/rewind to the relevant timestamps
         for each candidate's performance.
     </p>
 </body>
+
 </html>
