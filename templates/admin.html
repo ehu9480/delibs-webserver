@@ -12,37 +12,66 @@
 
 <body class="admin-dashboard">
   <header class="admin-header">
-    <img src="{{ url_for('static', filename='images/loko+logo+black+transparent.webp') }}" alt="LOKO" class="loko-logo">
-    <div class="admin-control-panel-header">Admin Control Panel · Reset daily password and database once before
-      starting the deliberation process.</div>
+    <div class="admin-header-left">
+      <img src="{{ url_for('static', filename='images/loko+logo+black+transparent.webp') }}" alt="LOKO"
+        class="loko-logo">
+      <div class="admin-control-panel-header">Admin Control Panel · Reset daily password and database once before
+        starting the deliberation process.</div>
+    </div>
+    <div class="admin-hello-badge">
+      Hello, Admin
+    </div>
   </header>
-  <h2>Daily Password</h2>
-  <p>Current Password: {{ daily_password or 'None' }}</p>
-  <form method="POST" action="{{ url_for('update_daily_password') }}"
-    onsubmit="return confirm('Generate new daily password?')">
-    <button type="submit">Generate New Password</button>
-  </form>
 
-  <h2>Reset Database</h2>
-  <form method="POST" action="{{ url_for('admin_reset_db') }}"
-    onsubmit="return confirm('Remove all normal users, auditionees, etc.?')">
-    <button type="submit">Reset Database</button>
-  </form>
+  <div class="admin-dashboard-container">
+    <div class="admin-left-panel">
+      <div class="admin-card">
+        <h3>Daily Password</h3>
+        <p>Current Password: {{ daily_password or 'None' }}</p>
+        <form method="POST" action="{{ url_for('update_daily_password') }}"
+          onsubmit="return confirm('Generate new daily password?')">
+          <button type="submit">Generate New Password</button>
+        </form>
+      </div>
 
-  <h2>Set Total Auditionees</h2>
-  <p>
-    Enter how many candidates there are.
-  </p>
+      <div class="admin-card">
+        <h3>Reset Database</h3>
+        <form method="POST" action="{{ url_for('admin_reset_db') }}"
+          onsubmit="return confirm('Remove all normal users, auditionees, etc.?')">
+          <button type="submit">Reset Database</button>
+        </form>
+      </div>
 
-  <form method="POST" action="{{ url_for('set_auditionees') }}">
-    <label for="candidate_count">Number of Auditionees:</label>
-    <input type="number" name="candidate_count" min="1" required>
-    <button type="submit">Confirm</button>
-  </form>
-  <p>The system currently has {{ total_auditionees }} candidates.</p>
+      <div class="admin-card">
+        <h3>Set Total Auditionees</h3>
+        <p>
+          Enter how many candidates there are.
+        </p>
 
-  <!-- The canvas for our chart -->
-  <canvas id="progressChart" width="400" height="200"></canvas>
+        <form method="POST" action="{{ url_for('set_auditionees') }}">
+          <label for="candidate_count">Number of Auditionees:</label>
+          <input type="number" name="candidate_count" min="1" required>
+          <button type="submit">Confirm</button>
+        </form>
+      </div>
+      <p style="margin-left: 8px">→ The system currently has {{ total_auditionees }} candidates.</p>
+    </div>
+
+    <div class="admin-right-panel">
+      <!-- The canvas for our chart -->
+      <div class="admin-card">
+        <canvas id="progressChart" width="400" height="200"></canvas>
+      </div>
+
+      <!-- Make it a POST form button calling view_results -->
+      <form method="POST" action="{{ url_for('view_results') }}">
+        <button type="submit">View Aggregated Rankings</button>
+      </form>
+    </div>
+  </div>
+
+
+  <footer>&copy; 2025 LOKO Cornell</footer>
 
   <script>
     // Initialize socket.io
@@ -118,14 +147,6 @@
       updateProgressChart(payload.data);
     });
   </script>
-
-
-
-  <h2>Results</h2>
-  <!-- Make it a POST form button calling view_results -->
-  <form method="POST" action="{{ url_for('view_results') }}">
-    <button type="submit">View Aggregated Rankings</button>
-  </form>
 </body>
 
 </html>

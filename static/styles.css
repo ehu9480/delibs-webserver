@@ -8,13 +8,19 @@ body.login-page {
   align-items: center;
 }
 
-.loko-logo {
+body.login-page .loko-logo {
   position: fixed;
   top: 24px;
   left: 24px;
   width: 40px;
   height: auto;
   z-index: 1000;
+}
+
+body.admin-dashboard .loko-logo {
+  position: static;
+  width: 40px;
+  height: auto;
 }
 
 footer {
@@ -150,21 +156,126 @@ body.admin-dashboard {
   color: black;
   min-height: 100vh;
   margin: 0;
-  padding: 2rem;
-  background-color: #f9f9f9;
+  padding: 24px 24px 24px 24px;
+  background-color: white;
 }
 
 .admin-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.admin-header-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .admin-control-panel-header {
   color: #7E7E7E;
   font-size: 14px;
   font-weight: normal;
+}
+
+.admin-hello-badge {
+  background-color: #EFEFEF;
+  color: black;
+  border-radius: 30px;
+  padding: 0.5rem 1.5rem;
+  font-size: 14px;
+  font-family: inherit;
+  margin-left: 1rem;
+  display: inline-block;
+}
+
+.admin-dashboard-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.admin-left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* vertical space between cards */
+  width: 270px;
+  /* fixed width for all cards */
+}
+
+.admin-right-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* takes remaining space for chart */
+  gap: 1.5rem;
+}
+
+.admin-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  border: 1px solid #EFEFEF;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-dashboard-container h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.admin-dashboard-container p,
+.admin-dashboard-container form label {
+  color: black;
+  font-size: 13px;
+}
+
+.admin-dashboard-container input {
+  width: 40px;
+  height: 24px;
+  border: 1px solid #c1c1c1;
+  border-radius: 30px;
+  margin-left: 6px;
+  font-size: 12px;
+  padding: 0 8px;
+}
+
+.admin-card form button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  width: 100%;
+  height: 40px;
+  font-family: inherit;
+  font-size: 13px;
+  transition: background-color 0.3s ease;
+  margin-top: 14px;
+}
+
+.admin-card form button:hover {
+  background-color: rgb(255, 209, 0);
+  cursor: pointer;
+}
+
+.admin-right-panel form button {
+  background-color: rgba(54, 162, 235, 0.5);
+  color: black;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  width: 100%;
+  height: 40px;
+  font-family: inherit;
+  font-size: 13px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-right-panel form button:hover {
+  background-color: rgba(54, 162, 235, 0.6);
+  cursor: pointer;
 }
 
 .control-card {
