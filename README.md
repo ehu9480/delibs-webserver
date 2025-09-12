@@ -25,9 +25,6 @@ that is the one that will run locally, provide the second one (which contains yo
 - When a new member joins, they are assigned about 30% of the total candidates, with a minimum of 1 candidate
 - When the admin resets and redistributes by setting the total number of auditionees, each candidate is assigned to 50% of the users currently logged in (rounded up)
 - Members compare candidates in a binary search–style process, choosing which one ranks higher until all their assigned candidates are placed
-- All number 1's are displayed together
-- All number 2's are displayed together
-- etc.
 - Progress is tracked in real time: comparisons completed vs. total comparisons
 - Final rankings are aggregated across users by averaging candidate positions
 
@@ -36,10 +33,10 @@ that is the one that will run locally, provide the second one (which contains yo
 - You have to send the "daily generated password" out to all of the members for logging in
 
 ## Recent Updates (September, 2025)
-✅ Mac & Windows compatible
-✅ Unified storage place for candidate videos, `videos` directory, just needs to be filled upon beginning delibs
-✅ Updated algorithm guarantees that all candidates are viewed by the same number of members
-✅ Updated UI
+✅ Mac & Windows compatible  
+✅ Unified storage place for candidate videos, `videos` directory, just needs to be filled upon beginning delibs  
+✅ Updated algorithm guarantees that all candidates are viewed by the same number of members  
+✅ Updated UI  
 
 ## TO DO
 ### Browser Considerations
