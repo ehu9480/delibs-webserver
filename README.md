@@ -12,34 +12,40 @@
 There will be two links, one will look like http://120.0.0.1:5000
 that is the one that will run locally, provide the second one (which contains your IP address) to the team
 
-**Note:** They have to be connected to the same WiFi
+**Note:** Admin and users have to be connected to the same WiFi
 
 ## Configuration Requirements
 
 ### Video Setup
-- Have to update the video directory path `VIDEO_DIRECTORY`
+- Add candidacy videos to the `videos` directory
 - Need minimum of 3 videos, 9 candidates (can change this in code)
 
 ### How It Works
-- Candidates are figured out by stripping name of video file
-- Number of minimum candidates each member can judge is 5 (can change)
-- Members can choose one candidate over another through the 5 different candidates
+- Candidates are detected by parsing the numbers in the video filenames
+- When a new member joins, they are assigned about 30% of the total candidates, with a minimum of 1 candidate
+- When the admin resets and redistributes by setting the total number of auditionees, each candidate is assigned to 50% of the users currently logged in (rounded up)
+- Members compare candidates in a binary search–style process, choosing which one ranks higher until all their assigned candidates are placed
 - All number 1's are displayed together
 - All number 2's are displayed together
 - etc.
+- Progress is tracked in real time: comparisons completed vs. total comparisons
+- Final rankings are aggregated across users by averaging candidate positions
 
 ## User Management
 - Usernames have to be the same when they leave and come back from the page
-- You have to send the "generated password" out to all of the members
+- You have to send the "daily generated password" out to all of the members for logging in
+
+## Recent Updates (September, 2025)
+✅ Mac & Windows compatible
+✅ Unified storage place for candidate videos, `videos` directory, just needs to be filled upon beginning delibs
+✅ Updated algorithm guarantees that all candidates are viewed by the same number of members
+✅ Updated UI
 
 ## TO DO
-
-## Browser Considerations
+# Browser Considerations
 - Figure out how to not save info "cookies" every time you open the web
  - The current solution to this is to ask the team to open the server in private browser
-
-### Things that need to change:
-- Add edge cases for less than 3 videos
+# Things that need to change:
+- Fix minimum dependency/Add edge cases for less than 3 videos
 - Change code so candidates don't depend on the name of the file (specifically the formatting with underscores)
 - Split app.py into different files
-- Make app usable for mac 
