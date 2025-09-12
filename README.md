@@ -42,10 +42,10 @@ that is the one that will run locally, provide the second one (which contains yo
 ✅ Updated UI
 
 ## TO DO
-# Browser Considerations
+### Browser Considerations
 - Figure out how to not save info "cookies" every time you open the web
  - The current solution to this is to ask the team to open the server in private browser
-# Things that need to change:
+### Things that need to change:
 - Fix minimum dependency/Add edge cases for less than 3 videos
 - Change code so candidates don't depend on the name of the file (specifically the formatting with underscores)
 - Split app.py into different files
