@@ -22,7 +22,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 DATABASE = 'database.db'
 
 # Where the videos are stored (if you're serving them from disk)
-VIDEO_DIRECTORY = r"C:\Users\vidFolder"
+VIDEO_DIRECTORY = os.path.join(os.path.dirname(__file__), "videos")
 
 def get_db_connection():
     conn = sqlite3.connect(DATABASE)

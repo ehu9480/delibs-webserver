@@ -47,6 +47,9 @@
         <p>
           Enter how many candidates there are.
         </p>
+        <small>
+          ***Set after all members have logged in for even distribution.***
+        </small>
 
         <form method="POST" action="{{ url_for('set_auditionees') }}">
           <label for="candidate_count">Number of Auditionees:</label>
@@ -54,7 +57,7 @@
           <button type="submit">Confirm</button>
         </form>
       </div>
-      <p style="margin-left: 8px">→ The system currently has {{ total_auditionees }} candidates.</p>
+      <p style="margin-left: 8px">→ The system currently has <strong>{{ total_auditionees }}</strong> candidates.</p>
     </div>
 
     <div class="admin-right-panel">
