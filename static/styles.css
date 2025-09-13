@@ -349,4 +349,16 @@ body.dashboard {
 .candidate-column form button {
   display: block;
   margin: 0.5rem 0;
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(54, 162, 235, 0.5);
+  color: black;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.candidate-column form button:hover {
+  background-color: rgba(54, 162, 235, 0.6);
+  cursor: pointer;
 }

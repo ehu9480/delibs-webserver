@@ -36,9 +36,11 @@
         <button name="result" value="b_better">
           Candidate #{{ candidate_b.candidate_number }} performed better based on the critera
         </button>
-        <button name="result" value="tie_b">
-          Can't decide
-        </button>
+        <div style="margin-top: 3rem;">
+          <button name="result" value="tie_b">
+            Can't decide
+          </button>
+        </div>
       </form>
     </div>
 
@@ -56,7 +58,7 @@
   </div>
   {% else %}
   <!-- If no comparison is happening, show normal stuff -->
-  {% if processed_count < assigned_count %} <p>We are either inserting a candidate.
+  {% if processed_count < assigned_count%} <p>We may be inserting a candidate.
     Refresh or check if there's an unprocessed candidate to compare.
     </p>
     {% else %}
