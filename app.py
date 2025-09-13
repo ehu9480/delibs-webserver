@@ -196,8 +196,8 @@ def assign_candidates_to_new_user(conn, user_id):
         # No auditionees exist
         return
 
-    # 2) Decide how many we want them to see, e.g. 30%
-    subset_size = max(1, int(0.3 * total_cands))  # or a fixed # like 10
+    # 2) Decide how many we want them to see, e.g. 30%: int(0.3 * total_cands)
+    subset_size = max(1, 2)  # or a fixed like 2 (minimum pair for minimum meaningful ranking)
     chosen = random.sample(cand_ids, subset_size)
 
     # 3) Insert into assignments
