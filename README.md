@@ -40,9 +40,12 @@ that is the one that will run locally, provide the second one (which contains yo
 
 ## TO DO
 ### Browser Considerations
-- Figure out how to not save info "cookies" every time you open the web
- - The current solution to this is to ask the team to open the server in private browser
-### Things that need to change:
-- Fix minimum dependency/Add edge cases for less than 3 videos
-- Change code so candidates don't depend on the name of the file (specifically the formatting with underscores)
-- Split app.py into different files
+1. Fix requirements.txt for easier package download
+1. Stream videos in lower quality
+    * converting the videos with handbrake is the current solution
+1. Add progress bar
+1. Change code so candidates don't depend on the name of the file (specifically the formatting with underscores)
+1. Figure out how to not save info "cookies" every time you open the web
+    - The current solution to this is to ask the team to open the server in private browser
+1. Fix minimum dependency/Add edge cases for less than 3 videos
+1. Split app.py into different files
