@@ -1,6 +1,7 @@
 # Steps to Run the App
 
 ## Installation
+### These should be completed on the system that will be used before delibs day
 - Install Python
 - run `pip install -r requirements.txt`
 
